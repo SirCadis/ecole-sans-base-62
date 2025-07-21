@@ -35,7 +35,9 @@ export const useTeacherDataSQL = () => {
       const id = databaseService.addTeacher(teacherData);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Professeur ajouté avec l\'ID:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
       return id;
     } catch (error) {
       console.error('❌ Erreur lors de l\'ajout du professeur:', error);
@@ -48,7 +50,9 @@ export const useTeacherDataSQL = () => {
       databaseService.updateTeacher(id, updatedData);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Professeur mis à jour:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la mise à jour du professeur:', error);
     }
@@ -61,7 +65,9 @@ export const useTeacherDataSQL = () => {
       databaseService.deleteTeacher(id);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Professeur supprimé:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la suppression du professeur:', error);
     }

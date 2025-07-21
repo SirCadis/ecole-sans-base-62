@@ -105,6 +105,19 @@ export function Settings({ onSidebarToggle }: SettingsProps) {
     }
   };
 
+  const handleGenerateSQL = async () => {
+    setIsLoading(true);
+    try {
+      await SqlFileManager.getInstance().exportAllDataToSQL();
+      toast.success("Fichier SQL généré et sauvegardé avec succès !");
+    } catch (error) {
+      toast.error("Erreur lors de la génération du fichier SQL");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -239,21 +252,34 @@ export function Settings({ onSidebarToggle }: SettingsProps) {
                 </Button>
               </div>
               
-              <Button
-                onClick={handleExportDataSQL}
-                disabled={isLoading}
-                variant="outline"
-                className="w-full flex items-center gap-2"
-              >
-                <Download className="h-4 w-4" />
-                Télécharger fichier SQL actuel
-              </Button>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <Button
+                  onClick={handleGenerateSQL}
+                  disabled={isLoading}
+                  variant="outline"
+                  className="flex items-center gap-2"
+                >
+                  <FileCode className="h-4 w-4" />
+                  Générer fichier SQL
+                </Button>
+                
+                <Button
+                  onClick={handleExportDataSQL}
+                  disabled={isLoading}
+                  variant="outline"
+                  className="flex items-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Télécharger SQL
+                </Button>
+              </div>
               
               <div className="text-sm text-muted-foreground space-y-1">
                 <p><strong>Exporter BD :</strong> Sauvegarde complète (.db) pour partage</p>
                 <p><strong>Importer BD :</strong> Remplace la base actuelle</p>
                 <p><strong>Script SQL :</strong> Fichier pour créer les tables</p>
-                <p><strong>Données SQL :</strong> Fichier avec toutes les données</p>
+                <p><strong>Générer SQL :</strong> Met à jour le fichier SQL automatiquement</p>
+                <p><strong>Télécharger SQL :</strong> Fichier avec toutes les données actuelles</p>
               </div>
             </CardContent>
           </Card>

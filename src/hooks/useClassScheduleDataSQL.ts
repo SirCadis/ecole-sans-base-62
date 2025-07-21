@@ -35,7 +35,9 @@ export const useClassScheduleDataSQL = () => {
       databaseService.addClassScheduleSlots(classId, slots);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Créneaux d\'emploi du temps ajoutés pour la classe:', classId);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de l\'ajout des créneaux d\'emploi du temps:', error);
     }
@@ -50,7 +52,9 @@ export const useClassScheduleDataSQL = () => {
       databaseService.deleteClassSchedule(classId);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Emploi du temps supprimé pour la classe:', classId);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la suppression de l\'emploi du temps:', error);
     }

@@ -40,7 +40,9 @@ export const useSchoolDataSQL = () => {
       const id = databaseService.addStudent(studentData);
       loadData(); // Recharger les données pour mettre à jour les compteurs
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Étudiant ajouté avec l\'ID:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de l\'ajout de l\'étudiant:', error);
     }
@@ -51,7 +53,9 @@ export const useSchoolDataSQL = () => {
       databaseService.updateStudent(id, updatedData);
       loadData(); // Recharger pour mettre à jour les compteurs si nécessaire
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Étudiant mis à jour:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la mise à jour de l\'étudiant:', error);
     }
@@ -62,7 +66,9 @@ export const useSchoolDataSQL = () => {
       databaseService.deleteStudent(id);
       loadData(); // Recharger pour mettre à jour les compteurs
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Étudiant supprimé:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la suppression de l\'étudiant:', error);
     }
@@ -73,7 +79,9 @@ export const useSchoolDataSQL = () => {
       const id = databaseService.addClass({ name, studentCount: 0 });
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Classe ajoutée avec l\'ID:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
       return id;
     } catch (error) {
       console.error('❌ Erreur lors de l\'ajout de la classe:', error);
@@ -86,7 +94,9 @@ export const useSchoolDataSQL = () => {
       databaseService.updateClass(id, updatedData);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Classe mise à jour:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la mise à jour de la classe:', error);
     }
@@ -97,7 +107,9 @@ export const useSchoolDataSQL = () => {
       databaseService.deleteClass(id);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Classe supprimée:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la suppression de la classe:', error);
     }

@@ -35,7 +35,9 @@ export const useAttendanceDataSQL = () => {
       const id = databaseService.addAttendanceRecord(record);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Présence enregistrée avec l\'ID:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
       return id;
     } catch (error) {
       console.error('❌ Erreur lors de l\'enregistrement de la présence:', error);
@@ -48,7 +50,9 @@ export const useAttendanceDataSQL = () => {
       databaseService.updateAttendanceRecord(id, recordData);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Présence mise à jour:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la mise à jour de la présence:', error);
     }
@@ -59,7 +63,9 @@ export const useAttendanceDataSQL = () => {
       databaseService.deleteAttendanceRecord(id);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Présence supprimée:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la suppression de la présence:', error);
     }

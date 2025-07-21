@@ -40,7 +40,9 @@ export const useGradeDataSQL = () => {
       const id = databaseService.addSubject(classId, semester, subjectData);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Matière ajoutée avec l\'ID:', id);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
       return id;
     } catch (error) {
       console.error('❌ Erreur lors de l\'ajout de la matière:', error);
@@ -53,7 +55,9 @@ export const useGradeDataSQL = () => {
       databaseService.deleteSubject(subjectId);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Matière supprimée:', subjectId);
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la suppression de la matière:', error);
     }
@@ -68,7 +72,9 @@ export const useGradeDataSQL = () => {
       databaseService.addOrUpdateGrade(studentId, subjectId, type, value, number);
       loadData();
       await SqlFileManager.getInstance().autoSaveData(); // Sauvegarde automatique
+      await SqlFileManager.getInstance().exportAllDataToSQL(); // Génération fichier SQL
       console.log('✅ Note mise à jour:', { studentId, subjectId, type, value, number });
+      console.log('📄 Fichier SQL mis à jour automatiquement');
     } catch (error) {
       console.error('❌ Erreur lors de la mise à jour de la note:', error);
     }
