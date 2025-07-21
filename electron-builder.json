@@ -1,0 +1,48 @@
+{
+  "appId": "com.ecole-sans-base.app",
+  "productName": "École Sans Base",
+  "directories": {
+    "output": "dist-electron"
+  },
+  "files": [
+    "dist/**/*",
+    "electron.js",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "public",
+      "to": "public",
+      "filter": ["**/*"]
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/favicon.ico",
+    "requestedExecutionLevel": "asInvoker"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "École Sans Base"
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "public/favicon.ico",
+    "category": "public.app-category.education"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "public/favicon.ico",
+    "category": "Education"
+  }
+}
